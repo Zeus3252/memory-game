@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
-import NavBar from "./components/NavBar";
-import Pokemon from "./components/Pokemon";
-import Modal from "./components/Modal";
+import GameRender from "./components/GameRender";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
-  const [pokeID, setPokeID] = useState([]);
-  const [gameEnd, setGameEnd] = useState("");
-  const [score, setScore] = useState(null);
-  const [highscore, setHighScore] = useState(null);
-  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     try {
@@ -32,80 +25,10 @@ function App() {
     }
   }, []);
 
-
-
-  function gameRefresh(newPokeID) {
-    if (pokeID.length === 11) {
-      setGameEnd("You Win");
-      toggleModal();
-      if (score > highscore) {
-        setHighScore(score);
-      }
-    }
-
-    if (!pokeID.includes(newPokeID)) {
-      setPokeID((prevState) => [...prevState, newPokeID]);
-      setScore((prevState) => prevState + 1);
-      setPokemon(pokemon);
-    } else if (pokeID.includes(newPokeID)) {
-      setGameEnd("You Lose");
-      toggleModal();
-      if (score > highscore) {
-        setHighScore(score);
-      }
-    }
-  }
-  const toggleModal = () => {
-    setModal(!modal);
-  };
-
-  function shufflePokemon(array) {
-    return array.sort(() => Math.random() - 0.5);
-  }
-  const shuffledPokemon = shufflePokemon([...pokemon]);
-
   return (
-    <>
-      <NavBar score={score} highscore={highscore} />
-      <br />
-      <br />
-      <Modal
-          modal={modal}
-          toggleModal={toggleModal}
-          gameEnd={gameEnd}
-          setGameEnd={setGameEnd}
-          setPokeID={setPokeID}
-          setScore={setScore}
-        />
-      <div className="pokemonContainer">
-        
-
-        <div className="pokemonDisplay">
-          {shuffledPokemon &&
-            shuffledPokemon.map((item) => (
-              <Pokemon
-                key={item.id}
-                pokeID={item.id}
-                pokeURL={item.front_default}
-                gameRefresh={gameRefresh}
-              />
-            ))}
-        </div>
-      </div>
-      <div className="mt-12 flex justify-center">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded"
-          onClick={() => {
-            setGameEnd("");
-            setScore(null);
-            setPokeID([]);
-            setGameOver((prevState) => prevState + 1);
-          }}
-        >
-          Reset
-        </button>
-      </div>
-    </>
+    <div>
+      <GameRender pokemon={pokemon} setPokemon={setPokemon}></GameRender>
+    </div>
   );
 }
 
