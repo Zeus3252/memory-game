@@ -1,9 +1,9 @@
 import React from "react";
 
-function Modal({
-  modal,
+function ResultModal({
+  resultModal,
   gameEnd,
-  toggleModal,
+  toggleResultModal,
   setGameEnd,
   setPokeID,
   setScore,
@@ -11,7 +11,7 @@ function Modal({
   return (
     <div
       className={`${
-        modal
+        resultModal
           ? "fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center"
           : "hidden"
       }`}
@@ -25,7 +25,7 @@ function Modal({
             setGameEnd("");
             setScore(null);
             setPokeID([]);
-            toggleModal();
+            toggleResultModal();
           }}
         >
           Try Again
@@ -35,4 +35,4 @@ function Modal({
   );
 }
 
-export default Modal;
+export default ResultModal;

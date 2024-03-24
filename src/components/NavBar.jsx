@@ -1,5 +1,5 @@
 import React from "react";
-import HelpModal from "./GameHelp";
+import HelpModal from "./HelpModal";
 import { useState } from "react";
 
 function NavBar({ score, highscore }) {

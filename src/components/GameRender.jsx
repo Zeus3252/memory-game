@@ -1,43 +1,43 @@
 import { useState } from "react";
 import NavBar from "./NavBar";
-import Modal from "./Modal";
+import ResultModal from "./ResultModal";
 import Pokemon from "./Pokemon";
-import HelpModal from "./GameHelp";
 
 function shufflePokemon(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
 function GameRender({ pokemon, setPokemon }) {
-  const [modal, setModal] = useState(false);
+  const [resultModal, setResultModal] = useState(false);
   const [pokeID, setPokeID] = useState([]);
   const [gameEnd, setGameEnd] = useState("");
   const [score, setScore] = useState(null);
   const [highscore, setHighScore] = useState(null);
+  const [gameOver, setGameOver] = useState(null);
 
   function gameRefresh(newPokeID) {
     if (pokeID.length === 11) {
       setGameEnd("You Win");
-      toggleModal();
+      toggleResultModal();
       if (score > highscore) {
         setHighScore(score);
       }
     }
-
     if (!pokeID.includes(newPokeID)) {
       setPokeID((prevState) => [...prevState, newPokeID]);
       setScore((prevState) => prevState + 1);
       setPokemon(pokemon);
     } else if (pokeID.includes(newPokeID)) {
       setGameEnd("You Lose");
-      toggleModal();
+      toggleResultModal();
       if (score > highscore) {
         setHighScore(score);
       }
     }
   }
-  const toggleModal = () => {
-    setModal(!modal);
+
+  const toggleResultModal = () => {
+    setResultModal(!resultModal);
   };
 
   const shuffledPokemon = shufflePokemon([...pokemon]);
@@ -46,15 +46,14 @@ function GameRender({ pokemon, setPokemon }) {
       <NavBar score={score} highscore={highscore} />
       <br />
       <br />
-      <Modal
-        modal={modal}
-        toggleModal={toggleModal}
+      <ResultModal
+        resultModal={resultModal}
+        toggleResultModal={toggleResultModal}
         gameEnd={gameEnd}
         setGameEnd={setGameEnd}
         setPokeID={setPokeID}
         setScore={setScore}
       />
-
       <div className="pokemonContainer">
         <div className="pokemonDisplay">
           {shuffledPokemon &&
