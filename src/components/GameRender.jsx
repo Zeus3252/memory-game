@@ -9,9 +9,8 @@ function GameRender({ pokemon, setPokemon }) {
   const [gameEnd, setGameEnd] = useState("");
   const [score, setScore] = useState(null);
   const [highscore, setHighScore] = useState(null);
-  const [setGameOver] = useState(null);
 
-  function gameRefresh(newPokeID) {
+  function boardRefresh(newPokeID) {
     if (pokeID.length === 11) {
       setGameEnd("You Win");
       toggleResultModal();
@@ -32,9 +31,15 @@ function GameRender({ pokemon, setPokemon }) {
     }
   }
 
-  const toggleResultModal = () => {
+  function gameReset() {
+    setGameEnd("");
+    setScore(null);
+    setPokeID([]);
+  }
+
+  function toggleResultModal() {
     setResultModal(!resultModal);
-  };
+  }
 
   function shufflePokemon(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -62,7 +67,7 @@ function GameRender({ pokemon, setPokemon }) {
                 key={item.id}
                 pokeID={item.id}
                 pokeURL={item.front_default}
-                gameRefresh={gameRefresh}
+                boardRefresh={boardRefresh}
               />
             ))}
         </div>
@@ -71,10 +76,7 @@ function GameRender({ pokemon, setPokemon }) {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded"
           onClick={() => {
-            setGameEnd("");
-            setScore(null);
-            setPokeID([]);
-            setGameOver((prevState) => prevState + 1);
+            gameReset();
           }}
         >
           Reset

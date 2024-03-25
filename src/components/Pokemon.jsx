@@ -1,11 +1,11 @@
-function Pokemon({ pokeURL, gameRefresh, pokeID }) {
+function Pokemon({ pokeURL, boardRefresh, pokeID }) {
   return (
     <div className="relative inline-block">
       <div className="w-48 h-48 bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
         <img
           src={pokeURL}
           onClick={() => {
-            gameRefresh(pokeID);
+            boardRefresh(pokeID);
           }}
           alt="Pokemon"
           className="w-full h-full object-cover"
