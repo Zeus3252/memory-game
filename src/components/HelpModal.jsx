@@ -1,5 +1,3 @@
-import React from "react";
-
 function HelpModal({ helpmodal, toggleHelpModal }) {
   return (
     <div
@@ -16,10 +14,10 @@ function HelpModal({ helpmodal, toggleHelpModal }) {
             and attention to detail.
           </i>{" "}
           <br /> <br />
-          In each round, your goal is to pick a card that you haven't selected
+          In each round, your goal is to pick a card that you have not selected
           before.
           <br /> <br />
-          The game ends if you select a card you've already chosen or if you
+          The game ends if you select a card you have already chosen or if you
           manage to select all unique cards without repeating, leading to a win.
         </p>
         <div className="mt-4 flex justify-center">

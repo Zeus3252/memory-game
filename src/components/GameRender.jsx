@@ -3,17 +3,13 @@ import NavBar from "./NavBar";
 import ResultModal from "./ResultModal";
 import Pokemon from "./Pokemon";
 
-function shufflePokemon(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
 function GameRender({ pokemon, setPokemon }) {
   const [resultModal, setResultModal] = useState(false);
   const [pokeID, setPokeID] = useState([]);
   const [gameEnd, setGameEnd] = useState("");
   const [score, setScore] = useState(null);
   const [highscore, setHighScore] = useState(null);
-  const [gameOver, setGameOver] = useState(null);
+  const [setGameOver] = useState(null);
 
   function gameRefresh(newPokeID) {
     if (pokeID.length === 11) {
@@ -39,6 +35,10 @@ function GameRender({ pokemon, setPokemon }) {
   const toggleResultModal = () => {
     setResultModal(!resultModal);
   };
+
+  function shufflePokemon(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
 
   const shuffledPokemon = shufflePokemon([...pokemon]);
   return (

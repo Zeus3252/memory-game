@@ -1,5 +1,3 @@
-import React from "react";
-
 function Pokemon({ pokeURL, gameRefresh, pokeID }) {
   return (
     <div className="relative inline-block">

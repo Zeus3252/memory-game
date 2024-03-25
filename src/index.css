@@ -76,7 +76,7 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 100px;
   justify-content: center;
-  width: 40%;
+  max-width: 70%;
 }
 
 .pokemonContainer {
@@ -84,6 +84,6 @@ button:focus-visible {
   justify-content: center;
 }
 
- body {
+body {
   display: block;
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import HelpModal from "./HelpModal";
 import { useState } from "react";
 
